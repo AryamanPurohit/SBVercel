@@ -15,13 +15,18 @@
 
     {% include 'navbar.html' %}
 
+{% if request.user.is_authenticated %}
     {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
+{% else %}
+    <p>Please log in to see messages.</p>
+{% endif %}
+
 
     {% block content %}
 
