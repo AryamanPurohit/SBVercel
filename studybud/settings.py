@@ -86,15 +86,15 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',  # The name of your PostgreSQL database
-        'USER': 'postgres',  # The PostgreSQL user
-        'PASSWORD': 'gMkrMWVjQUrjsLtgJWykKvVmmYvFOkon',  # The password for your PostgreSQL user
-        'HOST': 'autorack.proxy.rlwy.net',  # Set to the PostgreSQL server address (use 'localhost' for local)
-        'PORT': '55159',  # The default port for PostgreSQL
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
