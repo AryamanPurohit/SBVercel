@@ -1,6 +1,6 @@
 {% load static %}
 
-
+{% if request.user.is_authenticated %}
 {% for room in rooms %}
 <div class="roomListRoom">
     <div class="roomListRoom__header">
@@ -40,3 +40,7 @@
     </div>
 </div>
 {% endfor %}
+
+{% else %}
+    <p>Please log in or register to see available rooms.</p>
+{% endif %}
