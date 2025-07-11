@@ -156,18 +156,6 @@
       </div>
 
 
-
-        <div class="room__suggestions">
-  {% if suggestions %}
-    <p style="font-weight: bold;">AI Suggestions:</p>
-    <ul style="padding-left: 1.2rem;">
-      {% for text in suggestions %}
-        <li>{{ text }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-</div>
-
       <div class="room__message">
         <form action="" method="POST">
           {% csrf_token %}
