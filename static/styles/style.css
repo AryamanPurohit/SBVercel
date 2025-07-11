@@ -1163,3 +1163,17 @@ a {
   color: var(--color-main);
   font-weight: 1.4rem;
 }
+
+.suggestions {
+  margin-bottom: 1rem;
+}
+.suggestion-btn {
+  padding: 6px 10px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.suggestion-btn:hover {
+  background: #ddd;
+}
