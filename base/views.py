@@ -95,6 +95,7 @@ def room(request, pk):
         last = room_messages.order_by('-created').first()
         if last and last.body:
             suggestions = get_suggestions(last.body)
+    print("AI suggestions:", suggestions)
 
     if request.method == 'POST':
         Message.objects.create(
