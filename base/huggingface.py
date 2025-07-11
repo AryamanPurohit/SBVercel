@@ -1,7 +1,7 @@
 import os
 import requests
 
-HF_API_URL = "https://api-inference.huggingface.co/models/mrm8488/t5-base-finetuned-common_gen"
+HF_API_URL = "https://api-inference.huggingface.co/models/bigscience/T0pp"
 HF_TOKEN = os.environ.get("HF_TOKEN")
 
 headers = {"Authorization": f"Bearer {HF_TOKEN}"}
