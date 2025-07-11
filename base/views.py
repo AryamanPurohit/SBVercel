@@ -84,8 +84,9 @@ def room(request, pk):
     
     suggestions = []
     if room_messages.exists():
-        last_message = room_messages.latest('created').body  
+        last_message = room_messages.order_by('-created').first().body
         suggestions = get_suggestions(last_message)
+
 
     if request.method == 'POST':
         message = Message.objects.create(
