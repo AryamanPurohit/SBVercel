@@ -156,7 +156,15 @@
       </div>
 
 
-        {% if suggestions %}
+      
+
+
+
+
+        
+      <div class="room__message">
+
+            {% if suggestions %}
             <div class="suggestions">
                   <p><strong>AI Suggestions:</strong></p>
                   {% for s in suggestions %}
@@ -171,8 +179,7 @@
 
 
 
-        
-      <div class="room__message">
+          
         <form action="" method="POST">
           {% csrf_token %}
           <input name="body" placeholder="Write your message here..." />
