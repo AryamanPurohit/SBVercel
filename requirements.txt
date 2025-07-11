@@ -12,4 +12,5 @@ sqlparse==0.4.2
 toml==0.10.2
 tzdata==2024.2
 dj-database-url
-
+huggingface_hub>=0.33.2
+requests
