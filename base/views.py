@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
 
-
+from .gemini import get_suggestions 
 
 # Create your views here.
 
@@ -85,10 +85,17 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 
+
+
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    room_messages = room.message_set.all()
+    room_messages = room.message_set.all().order_by("created")
     participants = room.participants.all()
+
+    suggestions = []
+    if room_messages.exists():
+        last_message = room_messages.latest('created').body
+        suggestions = get_suggestions(last_message)
 
     if request.method == 'POST':
         message = Message.objects.create(
@@ -99,8 +106,12 @@ def room(request, pk):
         room.participants.add(request.user)
         return redirect('room', pk=room.id)
 
-    context = {'room': room, 'room_messages': room_messages,
-               'participants': participants}
+    context = {
+        'room': room,
+        'room_messages': room_messages,
+        'participants': participants,
+        'suggestions': suggestions,
+    }
     return render(request, 'base/room.html', context)
 
 
