@@ -154,25 +154,13 @@
         </div>
 
       </div>
-        
-     <div class="room__message">
-          {% if suggestions %}
-              <div class="ai-suggestions">
-                <p><strong>AI Suggestions:</strong></p>
-                <div class="suggestion-list">
-                      {% for suggestion in suggestions %}
-                            <button type="button" class="suggestion-btn" onclick="document.querySelector('input[name=body]').value = '{{ suggestion }}'">{{ suggestion }}</button>
-      {                % endfor %}
-                </div>
-              </div>
-          {% endif %}
-
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input name="body" placeholder="Write your message here..." />
-  </form>
-</div>
-
+      <div class="room__message">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input name="body" placeholder="Write your message here..." />
+        </form>
+      </div>
+    </div>
     <!-- Room End -->
 
     <!--   Start -->
