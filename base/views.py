@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
 
+from .huggingface import get_suggestions
+
 # Create your views here.
 
 # rooms = [
@@ -88,8 +90,14 @@ def room(request, pk):
     room_messages = room.message_set.all()
     participants = room.participants.all()
 
+    suggestions = []
+    if room_messages.exists():
+        last = room_messages.order_by('-created').first()
+        if last and last.body:
+            suggestions = get_suggestions(last.body)
+
     if request.method == 'POST':
-        message = Message.objects.create(
+        Message.objects.create(
             user=request.user,
             room=room,
             body=request.POST.get('body')
@@ -97,8 +105,12 @@ def room(request, pk):
         room.participants.add(request.user)
         return redirect('room', pk=room.id)
 
-    context = {'room': room, 'room_messages': room_messages,
-               'participants': participants}
+    context = {
+        'room': room,
+        'room_messages': room_messages,
+        'participants': participants,
+        'suggestions': suggestions
+    }
     return render(request, 'base/room.html', context)
 
 
