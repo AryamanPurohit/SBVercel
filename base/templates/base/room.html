@@ -154,6 +154,24 @@
         </div>
 
       </div>
+
+
+        {% if suggestions %}
+            <div class="suggestions">
+                  <p><strong>AI Suggestions:</strong></p>
+                  {% for s in suggestions %}
+                <button type="button" class="suggestion-btn"
+                  onclick="document.querySelector('input[name=body]').value='{{ s }}'">
+                  {{ s }}
+                </button>
+                  {% endfor %}
+                </div>
+        {% endif %}
+
+
+
+
+        
       <div class="room__message">
         <form action="" method="POST">
           {% csrf_token %}
