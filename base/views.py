@@ -112,6 +112,8 @@ def room(request, pk):
         'suggestions': suggestions
     }
     return render(request, 'base/room.html', context)
+    print("AI suggestions:", suggestions)
+
 
 
 def userProfile(request, pk):
