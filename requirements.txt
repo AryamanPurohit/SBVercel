@@ -13,5 +13,5 @@ toml==0.10.2
 tzdata==2024.2
 dj-database-url
 requests==2.31.0
-google-generativeai==0.5.4
+
 
